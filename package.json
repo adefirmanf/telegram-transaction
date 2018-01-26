@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "clipboardy": "^1.2.2",
     "request": "^2.83.0",
     "telegraf": "^3.17.3"
   }
