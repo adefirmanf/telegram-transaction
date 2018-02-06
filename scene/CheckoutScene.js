@@ -34,15 +34,17 @@ const CheckOut = new WizardScene('checkOut',
 				},
 				'body' : JSON.stringify({
 					phone : ctx.session.phone,
-					code : ctx.session.product
+					code : ctx.session.product,
+					provider : ctx.session.Provider
 				})
 			}	
-			console.log(options)
+			
 			R(options, (err, res, body)=>{
+				console.log(JSON.parse(body))
 				let Response;
 				if(typeof JSON.parse(body).error == 'undefined' ){
-					Response = JSON.parse(body).body.result
-					ctx.replyWithHTML(`✉️ Status : ${Response.status}\n====================================\n📦 Product Code : ${ctx.session.product}\n👤 CustomerID/Destination :${Response.no_handphone}\n📱 Serial Number : ${Response.serial_number}\n🔖 ID Transaction : ${Response.trx_id}\n`)
+					Response = JSON.parse(body).object.details
+					ctx.replyWithHTML(`✉️ Status : ${Response.status}\n====================================\n📦 Product Code : ${ctx.session.product}\n👤 CustomerID/Destination :${Response.destination}\n📱 Serial Number : ${Response.SN}\n🔖 ID Transaction : ${JSON.parse(body).idTransaction}\n`)
 					ctx.scene.enter('transaction')
 				}
 				else{

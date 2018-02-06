@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "clipboardy": "^1.2.2",
+    "lodash": "^4.17.5",
     "request": "^2.83.0",
     "telegraf": "^3.17.3"
   }
